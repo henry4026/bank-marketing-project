@@ -1,0 +1,1373 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 137,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "\n",
+    "%load_ext autoreload\n",
+    "%autoreload 2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "data = pd.read_csv('bank-additional/bank-additional-full.csv',sep=';')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "new_data = data.copy()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 41188 entries, 0 to 41187\n",
+      "Data columns (total 21 columns):\n",
+      "age               41188 non-null int64\n",
+      "job               41188 non-null object\n",
+      "marital           41188 non-null object\n",
+      "education         41188 non-null object\n",
+      "default           41188 non-null object\n",
+      "housing           41188 non-null object\n",
+      "loan              41188 non-null object\n",
+      "contact           41188 non-null object\n",
+      "month             41188 non-null object\n",
+      "day_of_week       41188 non-null object\n",
+      "duration          41188 non-null int64\n",
+      "campaign          41188 non-null int64\n",
+      "pdays             41188 non-null int64\n",
+      "previous          41188 non-null int64\n",
+      "poutcome          41188 non-null object\n",
+      "emp.var.rate      41188 non-null float64\n",
+      "cons.price.idx    41188 non-null float64\n",
+      "cons.conf.idx     41188 non-null float64\n",
+      "euribor3m         41188 non-null float64\n",
+      "nr.employed       41188 non-null float64\n",
+      "y                 41188 non-null object\n",
+      "dtypes: float64(5), int64(5), object(11)\n",
+      "memory usage: 6.6+ MB\n"
+     ]
+    }
+   ],
+   "source": [
+    "data.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>age</th>\n",
+       "      <th>duration</th>\n",
+       "      <th>campaign</th>\n",
+       "      <th>pdays</th>\n",
+       "      <th>previous</th>\n",
+       "      <th>emp.var.rate</th>\n",
+       "      <th>cons.price.idx</th>\n",
+       "      <th>cons.conf.idx</th>\n",
+       "      <th>euribor3m</th>\n",
+       "      <th>nr.employed</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <td>count</td>\n",
+       "      <td>41188.00000</td>\n",
+       "      <td>41188.000000</td>\n",
+       "      <td>41188.000000</td>\n",
+       "      <td>41188.000000</td>\n",
+       "      <td>41188.000000</td>\n",
+       "      <td>41188.000000</td>\n",
+       "      <td>41188.000000</td>\n",
+       "      <td>41188.000000</td>\n",
+       "      <td>41188.000000</td>\n",
+       "      <td>41188.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>mean</td>\n",
+       "      <td>40.02406</td>\n",
+       "      <td>258.285010</td>\n",
+       "      <td>2.567593</td>\n",
+       "      <td>962.475454</td>\n",
+       "      <td>0.172963</td>\n",
+       "      <td>0.081886</td>\n",
+       "      <td>93.575664</td>\n",
+       "      <td>-40.502600</td>\n",
+       "      <td>3.621291</td>\n",
+       "      <td>5167.035911</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>std</td>\n",
+       "      <td>10.42125</td>\n",
+       "      <td>259.279249</td>\n",
+       "      <td>2.770014</td>\n",
+       "      <td>186.910907</td>\n",
+       "      <td>0.494901</td>\n",
+       "      <td>1.570960</td>\n",
+       "      <td>0.578840</td>\n",
+       "      <td>4.628198</td>\n",
+       "      <td>1.734447</td>\n",
+       "      <td>72.251528</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>min</td>\n",
+       "      <td>17.00000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>-3.400000</td>\n",
+       "      <td>92.201000</td>\n",
+       "      <td>-50.800000</td>\n",
+       "      <td>0.634000</td>\n",
+       "      <td>4963.600000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>25%</td>\n",
+       "      <td>32.00000</td>\n",
+       "      <td>102.000000</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>999.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>-1.800000</td>\n",
+       "      <td>93.075000</td>\n",
+       "      <td>-42.700000</td>\n",
+       "      <td>1.344000</td>\n",
+       "      <td>5099.100000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>50%</td>\n",
+       "      <td>38.00000</td>\n",
+       "      <td>180.000000</td>\n",
+       "      <td>2.000000</td>\n",
+       "      <td>999.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>1.100000</td>\n",
+       "      <td>93.749000</td>\n",
+       "      <td>-41.800000</td>\n",
+       "      <td>4.857000</td>\n",
+       "      <td>5191.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>75%</td>\n",
+       "      <td>47.00000</td>\n",
+       "      <td>319.000000</td>\n",
+       "      <td>3.000000</td>\n",
+       "      <td>999.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>1.400000</td>\n",
+       "      <td>93.994000</td>\n",
+       "      <td>-36.400000</td>\n",
+       "      <td>4.961000</td>\n",
+       "      <td>5228.100000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>max</td>\n",
+       "      <td>98.00000</td>\n",
+       "      <td>4918.000000</td>\n",
+       "      <td>56.000000</td>\n",
+       "      <td>999.000000</td>\n",
+       "      <td>7.000000</td>\n",
+       "      <td>1.400000</td>\n",
+       "      <td>94.767000</td>\n",
+       "      <td>-26.900000</td>\n",
+       "      <td>5.045000</td>\n",
+       "      <td>5228.100000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "               age      duration      campaign         pdays      previous  \\\n",
+       "count  41188.00000  41188.000000  41188.000000  41188.000000  41188.000000   \n",
+       "mean      40.02406    258.285010      2.567593    962.475454      0.172963   \n",
+       "std       10.42125    259.279249      2.770014    186.910907      0.494901   \n",
+       "min       17.00000      0.000000      1.000000      0.000000      0.000000   \n",
+       "25%       32.00000    102.000000      1.000000    999.000000      0.000000   \n",
+       "50%       38.00000    180.000000      2.000000    999.000000      0.000000   \n",
+       "75%       47.00000    319.000000      3.000000    999.000000      0.000000   \n",
+       "max       98.00000   4918.000000     56.000000    999.000000      7.000000   \n",
+       "\n",
+       "       emp.var.rate  cons.price.idx  cons.conf.idx     euribor3m   nr.employed  \n",
+       "count  41188.000000    41188.000000   41188.000000  41188.000000  41188.000000  \n",
+       "mean       0.081886       93.575664     -40.502600      3.621291   5167.035911  \n",
+       "std        1.570960        0.578840       4.628198      1.734447     72.251528  \n",
+       "min       -3.400000       92.201000     -50.800000      0.634000   4963.600000  \n",
+       "25%       -1.800000       93.075000     -42.700000      1.344000   5099.100000  \n",
+       "50%        1.100000       93.749000     -41.800000      4.857000   5191.000000  \n",
+       "75%        1.400000       93.994000     -36.400000      4.961000   5228.100000  \n",
+       "max        1.400000       94.767000     -26.900000      5.045000   5228.100000  "
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.describe()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(array(['failure', 'nonexistent', 'success'], dtype=object),\n",
+       " array([ 4252, 35563,  1373]))"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.unique(data.poutcome, return_counts = True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array(['no', 'yes'], dtype=object)"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.y.unique()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "## one hot encoding"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {
+    "collapsed": true,
+    "jupyter": {
+     "outputs_hidden": true
+    }
+   },
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/usr/local/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: \n",
+      "A value is trying to be set on a copy of a slice from a DataFrame\n",
+      "\n",
+      "See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n",
+      "  \"\"\"Entry point for launching an IPython kernel.\n",
+      "/usr/local/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:2: SettingWithCopyWarning: \n",
+      "A value is trying to be set on a copy of a slice from a DataFrame\n",
+      "\n",
+      "See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n",
+      "  \n"
+     ]
+    }
+   ],
+   "source": [
+    "new_data.y[new_data.y == 'yes'] = 1 # convery label column to int\n",
+    "new_data.y[new_data.y == 'no'] = 0 # convery label column to int\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "new_data = new_data.astype({'y':'int64'})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 41188 entries, 0 to 41187\n",
+      "Data columns (total 21 columns):\n",
+      "age               41188 non-null int64\n",
+      "job               41188 non-null object\n",
+      "marital           41188 non-null object\n",
+      "education         41188 non-null object\n",
+      "default           41188 non-null object\n",
+      "housing           41188 non-null object\n",
+      "loan              41188 non-null object\n",
+      "contact           41188 non-null object\n",
+      "month             41188 non-null object\n",
+      "day_of_week       41188 non-null object\n",
+      "duration          41188 non-null int64\n",
+      "campaign          41188 non-null int64\n",
+      "pdays             41188 non-null int64\n",
+      "previous          41188 non-null int64\n",
+      "poutcome          41188 non-null object\n",
+      "emp.var.rate      41188 non-null float64\n",
+      "cons.price.idx    41188 non-null float64\n",
+      "cons.conf.idx     41188 non-null float64\n",
+      "euribor3m         41188 non-null float64\n",
+      "nr.employed       41188 non-null float64\n",
+      "y                 41188 non-null int64\n",
+      "dtypes: float64(5), int64(6), object(10)\n",
+      "memory usage: 6.6+ MB\n"
+     ]
+    }
+   ],
+   "source": [
+    "new_data.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "new_data_df = pd.get_dummies(new_data, columns=['job','marital','education','day_of_week','default','housing','loan',\n",
+    "                                 'contact','month','poutcome'], drop_first=True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "new_X = new_data_df.loc[:,  new_data_df.columns != 'y'] # select X"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 76,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>age</th>\n",
+       "      <th>duration</th>\n",
+       "      <th>campaign</th>\n",
+       "      <th>pdays</th>\n",
+       "      <th>previous</th>\n",
+       "      <th>emp.var.rate</th>\n",
+       "      <th>cons.price.idx</th>\n",
+       "      <th>cons.conf.idx</th>\n",
+       "      <th>euribor3m</th>\n",
+       "      <th>nr.employed</th>\n",
+       "      <th>...</th>\n",
+       "      <th>month_dec</th>\n",
+       "      <th>month_jul</th>\n",
+       "      <th>month_jun</th>\n",
+       "      <th>month_mar</th>\n",
+       "      <th>month_may</th>\n",
+       "      <th>month_nov</th>\n",
+       "      <th>month_oct</th>\n",
+       "      <th>month_sep</th>\n",
+       "      <th>poutcome_nonexistent</th>\n",
+       "      <th>poutcome_success</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <td>0</td>\n",
+       "      <td>56</td>\n",
+       "      <td>261</td>\n",
+       "      <td>1</td>\n",
+       "      <td>999</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1.1</td>\n",
+       "      <td>93.994</td>\n",
+       "      <td>-36.4</td>\n",
+       "      <td>4.857</td>\n",
+       "      <td>5191.0</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>1</td>\n",
+       "      <td>57</td>\n",
+       "      <td>149</td>\n",
+       "      <td>1</td>\n",
+       "      <td>999</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1.1</td>\n",
+       "      <td>93.994</td>\n",
+       "      <td>-36.4</td>\n",
+       "      <td>4.857</td>\n",
+       "      <td>5191.0</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>2</td>\n",
+       "      <td>37</td>\n",
+       "      <td>226</td>\n",
+       "      <td>1</td>\n",
+       "      <td>999</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1.1</td>\n",
+       "      <td>93.994</td>\n",
+       "      <td>-36.4</td>\n",
+       "      <td>4.857</td>\n",
+       "      <td>5191.0</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>3</td>\n",
+       "      <td>40</td>\n",
+       "      <td>151</td>\n",
+       "      <td>1</td>\n",
+       "      <td>999</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1.1</td>\n",
+       "      <td>93.994</td>\n",
+       "      <td>-36.4</td>\n",
+       "      <td>4.857</td>\n",
+       "      <td>5191.0</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>4</td>\n",
+       "      <td>56</td>\n",
+       "      <td>307</td>\n",
+       "      <td>1</td>\n",
+       "      <td>999</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1.1</td>\n",
+       "      <td>93.994</td>\n",
+       "      <td>-36.4</td>\n",
+       "      <td>4.857</td>\n",
+       "      <td>5191.0</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>41183</td>\n",
+       "      <td>73</td>\n",
+       "      <td>334</td>\n",
+       "      <td>1</td>\n",
+       "      <td>999</td>\n",
+       "      <td>0</td>\n",
+       "      <td>-1.1</td>\n",
+       "      <td>94.767</td>\n",
+       "      <td>-50.8</td>\n",
+       "      <td>1.028</td>\n",
+       "      <td>4963.6</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>41184</td>\n",
+       "      <td>46</td>\n",
+       "      <td>383</td>\n",
+       "      <td>1</td>\n",
+       "      <td>999</td>\n",
+       "      <td>0</td>\n",
+       "      <td>-1.1</td>\n",
+       "      <td>94.767</td>\n",
+       "      <td>-50.8</td>\n",
+       "      <td>1.028</td>\n",
+       "      <td>4963.6</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>41185</td>\n",
+       "      <td>56</td>\n",
+       "      <td>189</td>\n",
+       "      <td>2</td>\n",
+       "      <td>999</td>\n",
+       "      <td>0</td>\n",
+       "      <td>-1.1</td>\n",
+       "      <td>94.767</td>\n",
+       "      <td>-50.8</td>\n",
+       "      <td>1.028</td>\n",
+       "      <td>4963.6</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>41186</td>\n",
+       "      <td>44</td>\n",
+       "      <td>442</td>\n",
+       "      <td>1</td>\n",
+       "      <td>999</td>\n",
+       "      <td>0</td>\n",
+       "      <td>-1.1</td>\n",
+       "      <td>94.767</td>\n",
+       "      <td>-50.8</td>\n",
+       "      <td>1.028</td>\n",
+       "      <td>4963.6</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>41187</td>\n",
+       "      <td>74</td>\n",
+       "      <td>239</td>\n",
+       "      <td>3</td>\n",
+       "      <td>999</td>\n",
+       "      <td>1</td>\n",
+       "      <td>-1.1</td>\n",
+       "      <td>94.767</td>\n",
+       "      <td>-50.8</td>\n",
+       "      <td>1.028</td>\n",
+       "      <td>4963.6</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>41188 rows × 53 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "       age  duration  campaign  pdays  previous  emp.var.rate  cons.price.idx  \\\n",
+       "0       56       261         1    999         0           1.1          93.994   \n",
+       "1       57       149         1    999         0           1.1          93.994   \n",
+       "2       37       226         1    999         0           1.1          93.994   \n",
+       "3       40       151         1    999         0           1.1          93.994   \n",
+       "4       56       307         1    999         0           1.1          93.994   \n",
+       "...    ...       ...       ...    ...       ...           ...             ...   \n",
+       "41183   73       334         1    999         0          -1.1          94.767   \n",
+       "41184   46       383         1    999         0          -1.1          94.767   \n",
+       "41185   56       189         2    999         0          -1.1          94.767   \n",
+       "41186   44       442         1    999         0          -1.1          94.767   \n",
+       "41187   74       239         3    999         1          -1.1          94.767   \n",
+       "\n",
+       "       cons.conf.idx  euribor3m  nr.employed  ...  month_dec  month_jul  \\\n",
+       "0              -36.4      4.857       5191.0  ...          0          0   \n",
+       "1              -36.4      4.857       5191.0  ...          0          0   \n",
+       "2              -36.4      4.857       5191.0  ...          0          0   \n",
+       "3              -36.4      4.857       5191.0  ...          0          0   \n",
+       "4              -36.4      4.857       5191.0  ...          0          0   \n",
+       "...              ...        ...          ...  ...        ...        ...   \n",
+       "41183          -50.8      1.028       4963.6  ...          0          0   \n",
+       "41184          -50.8      1.028       4963.6  ...          0          0   \n",
+       "41185          -50.8      1.028       4963.6  ...          0          0   \n",
+       "41186          -50.8      1.028       4963.6  ...          0          0   \n",
+       "41187          -50.8      1.028       4963.6  ...          0          0   \n",
+       "\n",
+       "       month_jun  month_mar  month_may  month_nov  month_oct  month_sep  \\\n",
+       "0              0          0          1          0          0          0   \n",
+       "1              0          0          1          0          0          0   \n",
+       "2              0          0          1          0          0          0   \n",
+       "3              0          0          1          0          0          0   \n",
+       "4              0          0          1          0          0          0   \n",
+       "...          ...        ...        ...        ...        ...        ...   \n",
+       "41183          0          0          0          1          0          0   \n",
+       "41184          0          0          0          1          0          0   \n",
+       "41185          0          0          0          1          0          0   \n",
+       "41186          0          0          0          1          0          0   \n",
+       "41187          0          0          0          1          0          0   \n",
+       "\n",
+       "       poutcome_nonexistent  poutcome_success  \n",
+       "0                         1                 0  \n",
+       "1                         1                 0  \n",
+       "2                         1                 0  \n",
+       "3                         1                 0  \n",
+       "4                         1                 0  \n",
+       "...                     ...               ...  \n",
+       "41183                     1                 0  \n",
+       "41184                     1                 0  \n",
+       "41185                     1                 0  \n",
+       "41186                     1                 0  \n",
+       "41187                     0                 0  \n",
+       "\n",
+       "[41188 rows x 53 columns]"
+      ]
+     },
+     "execution_count": 76,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "new_y = new_data_df.y\n",
+    "new_X"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 84,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[ 56., 261.,   1., ...,   0.,   1.,   0.],\n",
+       "       [ 57., 149.,   1., ...,   0.,   1.,   0.],\n",
+       "       [ 37., 226.,   1., ...,   0.,   1.,   0.],\n",
+       "       ...,\n",
+       "       [ 56., 189.,   2., ...,   0.,   1.,   0.],\n",
+       "       [ 44., 442.,   1., ...,   0.,   1.,   0.],\n",
+       "       [ 74., 239.,   3., ...,   0.,   0.,   0.]])"
+      ]
+     },
+     "execution_count": 84,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "new_X.values"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## train test split"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import train_test_split"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 106,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "X_train,X_test,y_train,y_test = train_test_split(new_X.values,new_y.values,test_size=0.2,random_state=0)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "##  resample"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 107,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from imblearn.over_sampling import SMOTE"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 108,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sm = SMOTE(random_state=12, sampling_strategy = 1)\n",
+    "X_train_res, y_train_res = sm.fit_resample(X_train, y_train)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 109,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(array([0, 1]), array([29229, 29229]))"
+      ]
+     },
+     "execution_count": 109,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.unique(y_train_res, return_counts = True) # oversampling"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Logistic Regression"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 110,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.linear_model import LogisticRegression\n",
+    "from sklearn.metrics import r2_score\n",
+    "from sklearn.metrics import f1_score"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 111,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "logistic_model = LogisticRegression(max_iter= 100,random_state=0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 112,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/usr/local/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/logistic.py:432: FutureWarning: Default solver will be changed to 'lbfgs' in 0.22. Specify a solver to silence this warning.\n",
+      "  FutureWarning)\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,\n",
+       "                   intercept_scaling=1, l1_ratio=None, max_iter=100,\n",
+       "                   multi_class='warn', n_jobs=None, penalty='l2',\n",
+       "                   random_state=0, solver='warn', tol=0.0001, verbose=0,\n",
+       "                   warm_start=False)"
+      ]
+     },
+     "execution_count": 112,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "logistic_model.fit(X_train_res,y_train_res)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 113,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "accuracy = 0.8650157805292547\n",
+      "r2 = -0.3619442056174387\n",
+      "f1 = 0.595047341587764\n"
+     ]
+    }
+   ],
+   "source": [
+    "pred = logistic_model.predict(X_test)\n",
+    "print(f\"accuracy = {logistic_model.score(X_test, y_test)}\")\n",
+    "print(f\"r2 = {r2_score(y_test, pred)}\")\n",
+    "print(f\"f1 = {f1_score(y_test,pred)}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 114,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.metrics import confusion_matrix"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 115,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[ 817  102]\n",
+      " [1010 6309]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "tn, fp, fn, tp = confusion_matrix(y_test, pred).ravel()\n",
+    "print(np.array([[tp, fn], [fp, tn]]))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 116,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "precision:0.44718117131910234, recall:0.8890097932535365\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"precision:{precision}, recall:{recall}\".format(precision = tp/(tp+fp),recall = tp/(tp+fn)))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Random Forest"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 117,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.ensemble import RandomForestClassifier"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 118,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "rf = RandomForestClassifier(n_estimators = 5000, max_depth = 6, min_samples_split = 3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 119,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',\n",
+       "                       max_depth=6, max_features='auto', max_leaf_nodes=None,\n",
+       "                       min_impurity_decrease=0.0, min_impurity_split=None,\n",
+       "                       min_samples_leaf=1, min_samples_split=3,\n",
+       "                       min_weight_fraction_leaf=0.0, n_estimators=5000,\n",
+       "                       n_jobs=None, oob_score=False, random_state=None,\n",
+       "                       verbose=0, warm_start=False)"
+      ]
+     },
+     "execution_count": 119,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rf.fit(X_train_res,y_train_res)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 120,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "accuracy = 0.8790968681718864\n",
+      "r2 = -0.2198708892041088\n",
+      "f1 = 0.5772495755517827\n"
+     ]
+    }
+   ],
+   "source": [
+    "rf_pred = rf.predict(X_test)\n",
+    "print(f\"accuracy = {rf.score(X_test, y_test)}\")\n",
+    "print(f\"r2 = {r2_score(y_test, rf_pred)}\")\n",
+    "print(f\"f1 = {f1_score(y_test,rf_pred)}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 121,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[ 680  239]\n",
+      " [ 757 6562]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "tn, fp, fn, tp = confusion_matrix(y_test, rf_pred).ravel()\n",
+    "print(np.array([[tp, fn], [fp, tn]]))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 122,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "precision:0.4732080723729993, recall:0.7399347116430903\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"precision:{precision}, recall:{recall}\".format(precision = tp/(tp+fp),recall = tp/(tp+fn)))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Gradient Boosting"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 123,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.ensemble import GradientBoostingClassifier"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 124,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "gdb_model = GradientBoostingClassifier(learning_rate = 0.05)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 125,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "GradientBoostingClassifier(criterion='friedman_mse', init=None,\n",
+       "                           learning_rate=0.05, loss='deviance', max_depth=3,\n",
+       "                           max_features=None, max_leaf_nodes=None,\n",
+       "                           min_impurity_decrease=0.0, min_impurity_split=None,\n",
+       "                           min_samples_leaf=1, min_samples_split=2,\n",
+       "                           min_weight_fraction_leaf=0.0, n_estimators=100,\n",
+       "                           n_iter_no_change=None, presort='auto',\n",
+       "                           random_state=None, subsample=1.0, tol=0.0001,\n",
+       "                           validation_fraction=0.1, verbose=0,\n",
+       "                           warm_start=False)"
+      ]
+     },
+     "execution_count": 125,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "gdb_model.fit(X_train_res,y_train_res)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 126,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "accuracy = 0.9016751638747269\n",
+      "r2 = 0.007936325044851311\n",
+      "f1 = 0.6437994722955145\n"
+     ]
+    }
+   ],
+   "source": [
+    "gdb_pred = gdb_model.predict(X_test)\n",
+    "print(f\"accuracy = {gdb_model.score(X_test, y_test)}\")\n",
+    "print(f\"r2 = {r2_score(y_test, gdb_pred)}\")\n",
+    "print(f\"f1 = {f1_score(y_test,gdb_pred)}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 127,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[ 732  187]\n",
+      " [ 623 6696]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "tn, fp, fn, tp = confusion_matrix(y_test, gdb_pred).ravel()\n",
+    "print(np.array([[tp, fn], [fp, tn]]))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 128,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "precision:0.5402214022140222, recall:0.7965179542981502\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"precision:{precision}, recall:{recall}\".format(precision = tp/(tp+fp),recall = tp/(tp+fn)))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## XGboosting"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 129,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from xgboost import XGBClassifier"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 130,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "xgb_model = XGBClassifier()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 131,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,\n",
+       "              colsample_bynode=1, colsample_bytree=1, gamma=0,\n",
+       "              learning_rate=0.1, max_delta_step=0, max_depth=3,\n",
+       "              min_child_weight=1, missing=None, n_estimators=100, n_jobs=1,\n",
+       "              nthread=None, objective='binary:logistic', random_state=0,\n",
+       "              reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=None,\n",
+       "              silent=None, subsample=1, verbosity=1)"
+      ]
+     },
+     "execution_count": 131,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "xgb_model.fit(X_train_res,y_train_res)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 132,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "accuracy = 0.9156348628307842\n",
+      "r2 = 0.1487848714891008\n",
+      "f1 = 0.6293333333333334\n"
+     ]
+    }
+   ],
+   "source": [
+    "xgb_pred = xgb_model.predict(X_test)\n",
+    "print(f\"accuracy = {xgb_model.score(X_test, y_test)}\")\n",
+    "print(f\"r2 = {r2_score(y_test, xgb_pred)}\")\n",
+    "print(f\"f1 = {f1_score(y_test,xgb_pred)}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 133,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[ 590  329]\n",
+      " [ 366 6953]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "tn, fp, fn, tp = confusion_matrix(y_test, xgb_pred).ravel()\n",
+    "print(np.array([[tp, fn], [fp, tn]]))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 134,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "precision:0.6171548117154811, recall:0.6420021762785637\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"precision:{precision}, recall:{recall}\".format(precision = tp/(tp+fp),recall = tp/(tp+fn)))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
