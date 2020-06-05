@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": 137,
+   "execution_count": 1,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -294,7 +294,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 18,
+   "execution_count": 8,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -304,12 +304,7 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "metadata": {
-    "collapsed": true,
-    "jupyter": {
-     "outputs_hidden": true
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "name": "stderr",
@@ -335,7 +330,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 27,
+   "execution_count": 10,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -344,7 +339,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 28,
+   "execution_count": 11,
    "metadata": {},
    "outputs": [
     {
@@ -386,7 +381,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 29,
+   "execution_count": 12,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -396,7 +391,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 30,
+   "execution_count": 13,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -405,7 +400,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 76,
+   "execution_count": 14,
    "metadata": {},
    "outputs": [
     {
@@ -778,7 +773,7 @@
        "[41188 rows x 53 columns]"
       ]
      },
-     "execution_count": 76,
+     "execution_count": 14,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -790,7 +785,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 84,
+   "execution_count": 15,
    "metadata": {},
    "outputs": [
     {
@@ -805,7 +800,7 @@
        "       [ 74., 239.,   3., ...,   0.,   0.,   0.]])"
       ]
      },
-     "execution_count": 84,
+     "execution_count": 15,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -823,7 +818,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 32,
+   "execution_count": 16,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -832,7 +827,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 106,
+   "execution_count": 17,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -848,7 +843,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 107,
+   "execution_count": 18,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -857,7 +852,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 108,
+   "execution_count": 19,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -867,7 +862,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 109,
+   "execution_count": 20,
    "metadata": {},
    "outputs": [
     {
@@ -876,7 +871,7 @@
        "(array([0, 1]), array([29229, 29229]))"
       ]
      },
-     "execution_count": 109,
+     "execution_count": 20,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -894,7 +889,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 110,
+   "execution_count": 21,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -905,7 +900,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 111,
+   "execution_count": 22,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -914,7 +909,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 112,
+   "execution_count": 23,
    "metadata": {},
    "outputs": [
     {
@@ -935,7 +930,7 @@
        "                   warm_start=False)"
       ]
      },
-     "execution_count": 112,
+     "execution_count": 23,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -946,7 +941,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 113,
+   "execution_count": 24,
    "metadata": {},
    "outputs": [
     {
@@ -968,7 +963,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 114,
+   "execution_count": 25,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -977,7 +972,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 115,
+   "execution_count": 26,
    "metadata": {},
    "outputs": [
     {
@@ -996,7 +991,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 116,
+   "execution_count": 27,
    "metadata": {},
    "outputs": [
     {
@@ -1020,7 +1015,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 117,
+   "execution_count": 28,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1029,16 +1024,16 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 118,
+   "execution_count": 29,
    "metadata": {},
    "outputs": [],
    "source": [
-    "rf = RandomForestClassifier(n_estimators = 5000, max_depth = 6, min_samples_split = 3)"
+    "rf = RandomForestClassifier(n_estimators = 5000, max_depth = 6, min_samples_split = 3, random_state=0)"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 119,
+   "execution_count": 30,
    "metadata": {},
    "outputs": [
     {
@@ -1049,11 +1044,11 @@
        "                       min_impurity_decrease=0.0, min_impurity_split=None,\n",
        "                       min_samples_leaf=1, min_samples_split=3,\n",
        "                       min_weight_fraction_leaf=0.0, n_estimators=5000,\n",
-       "                       n_jobs=None, oob_score=False, random_state=None,\n",
-       "                       verbose=0, warm_start=False)"
+       "                       n_jobs=None, oob_score=False, random_state=0, verbose=0,\n",
+       "                       warm_start=False)"
       ]
      },
-     "execution_count": 119,
+     "execution_count": 30,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1064,16 +1059,16 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 120,
+   "execution_count": 31,
    "metadata": {},
    "outputs": [
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "accuracy = 0.8790968681718864\n",
-      "r2 = -0.2198708892041088\n",
-      "f1 = 0.5772495755517827\n"
+      "accuracy = 0.8782471473658655\n",
+      "r2 = -0.22844427898767172\n",
+      "f1 = 0.5700814402057436\n"
      ]
     }
    ],
@@ -1086,15 +1081,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 121,
+   "execution_count": 32,
    "metadata": {},
    "outputs": [
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[[ 680  239]\n",
-      " [ 757 6562]]\n"
+      "[[ 665  254]\n",
+      " [ 749 6570]]\n"
      ]
     }
    ],
@@ -1105,14 +1100,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 122,
+   "execution_count": 33,
    "metadata": {},
    "outputs": [
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "precision:0.4732080723729993, recall:0.7399347116430903\n"
+      "precision:0.47029702970297027, recall:0.7236126224156693\n"
      ]
     }
    ],
@@ -1129,7 +1124,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 123,
+   "execution_count": 34,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1138,16 +1133,16 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 124,
+   "execution_count": 35,
    "metadata": {},
    "outputs": [],
    "source": [
-    "gdb_model = GradientBoostingClassifier(learning_rate = 0.05)"
+    "gdb_model = GradientBoostingClassifier(learning_rate = 0.05,random_state=0)"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 125,
+   "execution_count": 36,
    "metadata": {},
    "outputs": [
     {
@@ -1160,12 +1155,12 @@
        "                           min_samples_leaf=1, min_samples_split=2,\n",
        "                           min_weight_fraction_leaf=0.0, n_estimators=100,\n",
        "                           n_iter_no_change=None, presort='auto',\n",
-       "                           random_state=None, subsample=1.0, tol=0.0001,\n",
+       "                           random_state=0, subsample=1.0, tol=0.0001,\n",
        "                           validation_fraction=0.1, verbose=0,\n",
        "                           warm_start=False)"
       ]
      },
-     "execution_count": 125,
+     "execution_count": 36,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1176,7 +1171,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 126,
+   "execution_count": 37,
    "metadata": {},
    "outputs": [
     {
@@ -1198,7 +1193,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 127,
+   "execution_count": 38,
    "metadata": {},
    "outputs": [
     {
@@ -1217,7 +1212,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 128,
+   "execution_count": 39,
    "metadata": {},
    "outputs": [
     {
@@ -1241,7 +1236,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 129,
+   "execution_count": 40,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1250,7 +1245,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 130,
+   "execution_count": 41,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1259,7 +1254,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 131,
+   "execution_count": 42,
    "metadata": {},
    "outputs": [
     {
@@ -1274,7 +1269,7 @@
        "              silent=None, subsample=1, verbosity=1)"
       ]
      },
-     "execution_count": 131,
+     "execution_count": 42,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1285,7 +1280,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 132,
+   "execution_count": 43,
    "metadata": {},
    "outputs": [
     {
@@ -1307,7 +1302,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 133,
+   "execution_count": 44,
    "metadata": {},
    "outputs": [
     {
@@ -1326,7 +1321,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 134,
+   "execution_count": 45,
    "metadata": {},
    "outputs": [
     {
@@ -1343,10 +1338,210 @@
   },
   {
    "cell_type": "code",
+   "execution_count": 48,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "tn, fp, fn, tp = confusion_matrix(y_test, xgb_pred).ravel()\n",
+    "xgb_conf = np.array([[tp, fn], [fp, tn]])\n",
+    "xgb_cb = xgb_conf * cost_benefit"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "cost_benefit = np.array([[7, -10], [-3, 0]])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "-258\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(xgb_cb.sum())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[ 4130 -3290]\n",
+      " [-1098     0]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(xgb_cb)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[ 590  329]\n",
+      " [ 366 6953]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(xgb_conf)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lx = np.array([])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lx+=1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Neural Network"
+   ]
+  },
+  {
+   "cell_type": "code",
    "execution_count": null,
    "metadata": {},
    "outputs": [],
-   "source": []
+   "source": [
+    "np.unique(y_train, return_counts = True) # oversampling"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import tensorflow as tf\n",
+    "from tensorflow.keras import layers\n",
+    "keras = tf.keras\n",
+    "from tensorflow.keras.layers import Dropout,Dense\n",
+    "from tensorflow.keras.callbacks import History"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "nn_model = tf.keras.models.Sequential()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "nn_model.add(keras.layers.Dense(units=100, input_dim=53,activation='relu'))\n",
+    "# nn_model.add(Dropout(0.1))\n",
+    "nn_model.add(keras.layers.Dense(units=60, activation='relu'))\n",
+    "nn_model.add(keras.layers.Dense(units=50, activation='relu'))\n",
+    "nn_model.add(Dropout(0.1))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "nn_model.add(keras.layers.Dense(units=1,activation='sigmoid'))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "nn_model.compile(loss='binary_crossentropy',\n",
+    "              optimizer='adam',\n",
+    "                metrics=['accuracy',tf.keras.metrics.Recall()])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "KeyError",
+     "evalue": "'unknown'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mKeyError\u001b[0m                                  Traceback (most recent call last)",
+      "\u001b[0;32m/usr/local/anaconda3/lib/python3.7/site-packages/pandas/core/indexes/base.py\u001b[0m in \u001b[0;36mget_loc\u001b[0;34m(self, key, method, tolerance)\u001b[0m\n\u001b[1;32m   2896\u001b[0m             \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 2897\u001b[0;31m                 \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_engine\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget_loc\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkey\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   2898\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mKeyError\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32mpandas/_libs/index.pyx\u001b[0m in \u001b[0;36mpandas._libs.index.IndexEngine.get_loc\u001b[0;34m()\u001b[0m\n",
+      "\u001b[0;32mpandas/_libs/index.pyx\u001b[0m in \u001b[0;36mpandas._libs.index.IndexEngine.get_loc\u001b[0;34m()\u001b[0m\n",
+      "\u001b[0;32mpandas/_libs/hashtable_class_helper.pxi\u001b[0m in \u001b[0;36mpandas._libs.hashtable.PyObjectHashTable.get_item\u001b[0;34m()\u001b[0m\n",
+      "\u001b[0;32mpandas/_libs/hashtable_class_helper.pxi\u001b[0m in \u001b[0;36mpandas._libs.hashtable.PyObjectHashTable.get_item\u001b[0;34m()\u001b[0m\n",
+      "\u001b[0;31mKeyError\u001b[0m: 'unknown'",
+      "\nDuring handling of the above exception, another exception occurred:\n",
+      "\u001b[0;31mKeyError\u001b[0m                                  Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-22-5af082a85681>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mX_train\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'unknown'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;32m/usr/local/anaconda3/lib/python3.7/site-packages/pandas/core/frame.py\u001b[0m in \u001b[0;36m__getitem__\u001b[0;34m(self, key)\u001b[0m\n\u001b[1;32m   2978\u001b[0m             \u001b[0;32mif\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mnlevels\u001b[0m \u001b[0;34m>\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2979\u001b[0m                 \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_getitem_multilevel\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkey\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 2980\u001b[0;31m             \u001b[0mindexer\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget_loc\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkey\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   2981\u001b[0m             \u001b[0;32mif\u001b[0m \u001b[0mis_integer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mindexer\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2982\u001b[0m                 \u001b[0mindexer\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m[\u001b[0m\u001b[0mindexer\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m/usr/local/anaconda3/lib/python3.7/site-packages/pandas/core/indexes/base.py\u001b[0m in \u001b[0;36mget_loc\u001b[0;34m(self, key, method, tolerance)\u001b[0m\n\u001b[1;32m   2897\u001b[0m                 \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_engine\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget_loc\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkey\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2898\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mKeyError\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 2899\u001b[0;31m                 \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_engine\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget_loc\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_maybe_cast_indexer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkey\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   2900\u001b[0m         \u001b[0mindexer\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget_indexer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mkey\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mmethod\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mmethod\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mtolerance\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mtolerance\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2901\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mindexer\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mndim\u001b[0m \u001b[0;34m>\u001b[0m \u001b[0;36m1\u001b[0m \u001b[0;32mor\u001b[0m \u001b[0mindexer\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msize\u001b[0m \u001b[0;34m>\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32mpandas/_libs/index.pyx\u001b[0m in \u001b[0;36mpandas._libs.index.IndexEngine.get_loc\u001b[0;34m()\u001b[0m\n",
+      "\u001b[0;32mpandas/_libs/index.pyx\u001b[0m in \u001b[0;36mpandas._libs.index.IndexEngine.get_loc\u001b[0;34m()\u001b[0m\n",
+      "\u001b[0;32mpandas/_libs/hashtable_class_helper.pxi\u001b[0m in \u001b[0;36mpandas._libs.hashtable.PyObjectHashTable.get_item\u001b[0;34m()\u001b[0m\n",
+      "\u001b[0;32mpandas/_libs/hashtable_class_helper.pxi\u001b[0m in \u001b[0;36mpandas._libs.hashtable.PyObjectHashTable.get_item\u001b[0;34m()\u001b[0m\n",
+      "\u001b[0;31mKeyError\u001b[0m: 'unknown'"
+     ]
+    }
+   ],
+   "source": [
+    "history = History()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "his =nn_model.fit(new_X_train, new_y_train, epochs=10, batch_size=16,validation_data = (new_X_test, new_y_test),\n",
+    "                     callbacks=[history])"
+   ]
   }
  ],
  "metadata": {
