@@ -45,7 +45,8 @@
   - nerual network
     - precision: 32%, recall:0.97%
 # ROC curve
-  
+  - 
+![roc-curve](/image/roc-curve.png)
 # Cost benefit matrix
 - If customers purchase term deposit and our prediction is the same. We will have $70 profit($100 - $30 labor cost).
 - If customers purchase term deposit and our prediction is the opposite. We will lose $100(we lost a potential customer)
@@ -58,6 +59,10 @@
 - set different threshold to see which model generate the most profit.
 ![profit-curve](/image/profit-curve.png)
 
+# Grid Search
+- tuning the best model XG boosting.
+
 # Result
 - XG boosting generate the most profit of $6130 with 0.9 threshold
 - this means that anything below 90% we will call the customer.
+- depends on the business needs, we might need to switch our model with different threshold.
