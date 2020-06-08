@@ -21,7 +21,9 @@
 - dataset is imbalance. 
   - 89% is no(customer not purchase term deposit)
   - 11% is yes(custoemr purchase term deposit)
-![imbalance-data](/image/imbalance-data.png)
+  
+  ![imbalance-data](/image/imbalance-data.png)
+
 - contact column is how we contact the customer.
 - customer with cellular has almost triple accept rate of customer with telephone.
   - customers with cellular has 14.7% accept rate
