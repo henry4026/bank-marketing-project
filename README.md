@@ -8,6 +8,8 @@
 - [Cost benefit matrix](#cost-benefit-matrix)
 - [Profit curve](#profit-curve)
 - [Result](#result)
+- [Future implementation](#Future-implementation)
+
 # Bank marketing prediction
 - predicting if customers purchase term deposit. using the most model to generate the most profit for the company.
 
@@ -28,7 +30,8 @@
 - customer with cellular has almost triple accept rate of customer with telephone.
   - customers with cellular has 14.7% accept rate
   - customers with telephone has 5.2% accept rate
-![contact-image](/image/contact-image.png)
+  
+  ![contact-image](/image/contact-image.png)
 
 # Train test split
 - train test split with the original data.
@@ -46,10 +49,15 @@
     - precision: 61%, recall: 54%
   - nerual network
     - precision: 32%, recall:0.97%
+    
 # ROC curve
-  - as we can see from this roc curve, the auc for different model is very similiar
+  - as we can see from this roc curve, the auc for different model is very similiar.
+  - to determine the best model, we choose to determine by the precision recall.
+  
 ![roc-curve](/image/roc-curve.png)
+
 # Cost benefit matrix
+- we create cost benefit martrix to fit the business needs.
 - If customers purchase term deposit and our prediction is the same. We will have $70 profit($100 - $30 labor cost).
 - If customers purchase term deposit and our prediction is the opposite. We will lose $100(we lost a potential customer)
 - If customers are not purchasing term deposit and our prediction is the same. we will not gain or lose anything.
@@ -60,13 +68,22 @@
 
 # Profit curve
 - set different threshold to see which model generate the most profit.
+- we can find the model genefit the most profit.
 
 ![profit-curve](/image/profit-curve.png)
 
 # Grid Search
 - tuning the best model XG boosting.
+- f1 score increase 5% after tuning parameters.
 
 # Result
 - XG boosting generate the most profit of $6130 with 0.9 threshold
 - this means that anything below 90% we will call the customer.
-- depends on the business needs, we might need to switch our model with different threshold.
+- depends on the business needs, we might need to switch our model with different threshold to fulfill the company's needs.
+
+# Future implementation
+- 5 fold cross valication for neural network.
+- more feature engineering to improve the model.
+- create different cost benefit matrix for differrent business needs.
+- 
+
