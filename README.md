@@ -45,7 +45,7 @@
   - nerual network
     - precision: 32%, recall:0.97%
 # ROC curve
-  - 
+  - as we can see from this roc curve, the auc for different model is very similiar
 ![roc-curve](/image/roc-curve.png)
 # Cost benefit matrix
 - If customers purchase term deposit and our prediction is the same. We will have $70 profit($100 - $30 labor cost).
