@@ -1,4 +1,6 @@
-[bank marketing prediction](doc/Bank marketing prediction.md)
+# Contents
+- [Bank marketing prediction](#Bank marketing prediction)
+
 # Bank marketing prediction
 >using the most model to generate the most profit for the company.
 
