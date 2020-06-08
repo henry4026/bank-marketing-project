@@ -33,7 +33,7 @@
   
   ![contact-image](/image/contact-image.png)
 
-# Train test split
+# Cleaning 
 - train test split with the original data.
 - use SMOTE to oversample my train dataset to solve imbalance class.
 
@@ -56,21 +56,22 @@
   
 ![roc-curve](/image/roc-curve.png)
 
-# Cost benefit matrix
-- we create cost benefit martrix to fit the business needs.
-- If customers purchase term deposit and our prediction is the same. We will have $70 profit($100 - $30 labor cost).
-- If customers purchase term deposit and our prediction is the opposite. We will lose $100(we lost a potential customer)
-- If customers are not purchasing term deposit and our prediction is the same. we will not gain or lose anything.
-- If customers are not purchasing term deposit and our prediction is the opposite. we will lose $30(labor cost).
-- base on our cost benefit matrix, we will minimize our False Negative, focus on recall.
+# Profit Analysis
+- Cost benefit matrix
+  - we create cost benefit martrix to fit the business needs.
+  - If customers purchase term deposit and our prediction is the same. We will have $70 profit($100 - $30 labor cost).
+  - If customers purchase term deposit and our prediction is the opposite. We will lose $100(we lost a potential customer)
+  - If customers are not purchasing term deposit and our prediction is the same. we will not gain or lose anything.
+  - If customers are not purchasing term deposit and our prediction is the opposite. we will lose $30(labor cost).
+  - base on our cost benefit matrix, we will minimize our False Negative, focus on recall.
 
-![cost-benefit-matrix](/image/cost-benefit.png)
+  ![cost-benefit-matrix](/image/cost-benefit.png)
 
-# Profit curve
-- set different threshold to see which model generate the most profit.
-- we can find the model genefit the most profit.
+- Profit curve
+  - set different threshold to see which model generate the most profit.
+  - we can find the model generate the most profit.
 
-![profit-curve](/image/profit-curve.png)
+  ![profit-curve](/image/profit-curve.png =250x250)
 
 # Grid Search
 - tuning the best model XG boosting.
@@ -82,7 +83,7 @@
 - depends on the business needs, we might need to switch our model with different threshold to fulfill the company's needs.
 
 # Future implementation
-- 5 fold cross valication for neural network.
+- 5-fold cross validation for neural network.
 - more feature engineering to improve the model.
 - create different cost benefit matrix for differrent business needs.
 
