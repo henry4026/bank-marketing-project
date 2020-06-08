@@ -2,13 +2,12 @@
 - [Bank marketing prediction](#bank-marketing-prediction)
 - [Background](#background)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
-- [train test split](#train-test-split)
+- [Cleaning](#cleaning )
 - [Modeling](#modeling)
 - [ROC curve](#roc-curve)
-- [Cost benefit matrix](#cost-benefit-matrix)
-- [Profit curve](#profit-curve)
-- [Result](#result)
-- [Future implementation](#Future-implementation)
+- [Profit Analysis](#profit-analysis)
+- [Conclusion](#conclusion)
+- [Future implementation](#future-implementation)
 
 # Bank marketing prediction
 - predicting if customers purchase term deposit. using the most model to generate the most profit for the company.
@@ -57,7 +56,7 @@
 ![roc-curve](/image/roc-curve.png)
 
 # Profit Analysis
-- Cost benefit matrix
+- ## Cost benefit matrix
   - we create cost benefit martrix to fit the business needs.
   - If customers purchase term deposit and our prediction is the same. We will have $70 profit($100 - $30 labor cost).
   - If customers purchase term deposit and our prediction is the opposite. We will lose $100(we lost a potential customer)
@@ -67,19 +66,20 @@
 
   ![cost-benefit-matrix](/image/cost-benefit.png)
 
-- Profit curve
+- ## Profit curve 
   - set different threshold to see which model generate the most profit.
   - we can find the model generate the most profit.
-
-  ![profit-curve](/image/profit-curve.png =250x250)
-
+  - this is the profit curve we get.
+  
+  ![profit-curve](/image/profit-curve.png)
+  - as we can see XG boosting seems generate the most profit.
 # Grid Search
 - tuning the best model XG boosting.
 - f1 score increase 5% after tuning parameters.
 
-# Result
+# Conclusion
 - XG boosting generate the most profit of $6130 with 0.9 threshold
-- this means that anything below 90% we will call the customer.
+- this means that anything below 90% we will call the customer to check in if they are interested on purchasing term deposit.
 - depends on the business needs, we might need to switch our model with different threshold to fulfill the company's needs.
 
 # Future implementation
