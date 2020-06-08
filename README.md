@@ -15,6 +15,7 @@
 # Background
 - The data is related with direct marketing campaigns of a Portuguese banking institution. The marketing campaigns were based on phone calls. Often, more than one contact to the same client was required, in order to access if the product (bank term deposit) would be ('yes') or not ('no') subscribed. 
 - A term deposit is a fixed-term investment that includes the deposit of money into an account at a financial institution and fiancial institution will provide guarantee interest rate return to customers. Term deposit investments usually carry short-term maturities ranging from one month to a few years and will have varying levels of required minimum deposits.
+- data sources (https://archive.ics.uci.edu/ml/datasets/Beijing+Multi-Site+Air-Quality+Data)
 
 # Exploratory Data Analysis
 - dataset has around 41,000 rows and with 21 columns
