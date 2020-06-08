@@ -85,5 +85,4 @@
 - 5 fold cross valication for neural network.
 - more feature engineering to improve the model.
 - create different cost benefit matrix for differrent business needs.
-- 
 
