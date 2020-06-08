@@ -4,6 +4,7 @@
 - [Exploratory Data Analysis](#exploratory-data-analysis)
 - [train test split](#train-test-split)
 - [Modeling](#modeling)
+- [ROC curve](#roc-curve)
 - [Cost benefit matrix](#cost-benefit-matrix)
 - [Profit curve](#profit-curve)
 - [Result](#result)
@@ -16,6 +17,7 @@
 
 # Exploratory Data Analysis
 - dataset has around 41,000 rows and with 21 columns
+- numerical and categorical data, use one hot encoder for categorical columns.
 - dataset is imbalance. 
   - 89% is no(customer not purchase term deposit)
   - 11% is yes(custoemr purchase term deposit)
@@ -49,11 +51,13 @@
 - If customers purchase term deposit and our prediction is the opposite. We will lose $100(we lost a potential customer)
 - If customers are not purchasing term deposit and our prediction is the same. we will not gain or lose anything.
 - If customers are not purchasing term deposit and our prediction is the opposite. we will lose $30(labor cost).
+- base on our cost benefit matrix, we will minimize our False Negative, focus on recall.
 ![cost-benefit-matrix](/image/cost-benefit.png)
 
 # Profit curve
 - set different threshold to see which model generate the most profit.
 ![profit-curve](/image/profit-curve.png)
+
 # Result
 - XG boosting generate the most profit of $6130 with 0.9 threshold
-- 
+- this means that anything below 90% we will call the customer.
