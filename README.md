@@ -79,7 +79,8 @@
 
 # Conclusion
 - XG boosting generate the most profit of $6130 with 0.9 threshold
-- this means that anything below 90% we will call the customer to check in if they are interested on purchasing term deposit.
+  - this means that anything below 90% we will call the customer to check in if they are interested on purchasing term deposit.
+  - customers might be frustrated and it might hurt company reputation or customers might stop doing business with us.
 - depends on the business needs, we might need to switch our model with different threshold to fulfill the company's needs.
 
 # Future implementation
