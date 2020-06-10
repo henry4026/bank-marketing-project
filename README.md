@@ -74,7 +74,7 @@
   - we can find the model generate the most profit.
   - this is the profit curve we get.
   
-  ![profit-curve](/image/profit-curve.png)
+  ![profit-curve](/image/profit-curve-new.png)
   - as we can see XG boosting seems generate the most profit.
 # Grid Search
 - tuning the best model XG boosting.
