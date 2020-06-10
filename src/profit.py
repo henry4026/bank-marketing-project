@@ -57,7 +57,7 @@ def predict(model, X, threshold=0.5):
                     model.classes_[1])
 
 def nn_predict(model,X,threshold=0.5):
-    length_of_nn = len(model.predict_proba(X,batch_size=32))
+    length_of_nn = len(model.predict_proba(X,batch_size=16))
     lst = np.zeros([length_of_nn,2])
     result = lst[:,1].reshape(length_of_nn,1)
     result=(model.predict_proba(X,batch_size=32))
@@ -108,12 +108,16 @@ def feat_imp(df, model, n_features):
     d = dict(zip(df.columns, model.feature_importances_))
     ss = sorted(d, key=d.get, reverse=True)
     top_names = ss[0:n_features]
-
+    lst=[]
+    for i in ss:
+        lst.append(d[i])
     plt.figure(figsize=(15,15))
-    plt.title("Feature importances")
-    plt.barh(range(n_features),[d[i] for i in top_names], color="b", align="center")
-    plt.ylim(-1, n_features)
-    plt.yticks(range(n_features), top_names)
+    plt.title("Feature Importances",fontsize=28)
+    plt.barh(range(n_features),(sorted([d[i] for i in top_names],reverse=False)), color="b", align="center")
+#     plt.ylim(-1, n_features)
+    plt.yticks(range(n_features), top_names[::-1],fontsize=20)
+#     ax.invert_yaxis()
+#     ax.tick_params(axis='both', which='major', labelsize=15, color='white')
 
 def find_best_profit(model,X,y):
     threshold_lst = []
@@ -158,12 +162,12 @@ def roc_curve_(rf,gdb_model,logistic_model,xgb_model,nn_model,X_test,y_test):
     roc_auc3 = metrics.auc(fpr3, tpr3)
     roc_auc4 = metrics.auc(fpr4,tpr4)
     plt.title('ROC curve')
-    plt.plot(fpr, tpr, 'b', label = "RF AUC = {}".format(roc_auc))
-    plt.plot(fpr1, tpr1, 'r', label = "GB AUC = {}".format(roc_auc1))
-    plt.plot(fpr2, tpr2, 'g', label = "logistic AUC = {}".format(roc_auc2))
-    plt.plot(fpr3, tpr3, 'k', label = "xgboost AUC = {}".format(roc_auc3))
-    plt.plot(fpr4, tpr4, 'k', label = "neural network AUC = {}".format(roc_auc4))
-    plt.legend(loc = 'lower right')
+    plt.plot(fpr, tpr, 'b', label = "RF AUC = {0:.1%}".format(round(roc_auc,3)))
+    plt.plot(fpr1, tpr1, 'r', label = "GB AUC = {0:.1%}".format(round(roc_auc1,3)))
+    plt.plot(fpr2, tpr2, 'g', label = "logistic AUC = {0:.1%}".format(round(roc_auc2,3)))
+    plt.plot(fpr3, tpr3, 'k', label = "xgboost AUC = {0:.1%}".format(round(roc_auc3,3)))
+    plt.plot(fpr4, tpr4, 'y', label = "neural network AUC = {0:.1%}".format(round(roc_auc4,3)))
+    plt.legend(loc = 'lower right',shadow=True)
     plt.plot([0, 1], [0, 1],'r--')
     plt.xlim([0, 1])
     plt.ylim([0, 1])
