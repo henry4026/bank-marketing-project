@@ -26,14 +26,14 @@
   - 11% is yes(custoemr purchase term deposit)
   - our data set is imbalance, accuracy might not be the most score to determine the model
   
-  ![imbalance-data](/image/imbalance-data.png)
+  ![imbalance-data](/image/imbalance-data-new.png)
 
 - contact column is how we contact the customer.
 - customer with cellular has almost triple accept rate of customer with telephone.
   - customers with cellular has 14.7% accept rate
   - customers with telephone has 5.2% accept rate
   
-  ![contact-image](/image/contact-image.png)
+  ![contact-image](/image/contact-image-new.png)
 
 # Cleaning 
 - train test split with the original data.
@@ -56,7 +56,7 @@
   - as we can see from this roc curve, the auc for different model is very similiar.
   - to determine the best model, we choose to determine by the precision recall.
   
-![roc-curve](/image/roc-curve.png)
+![roc-curve](/image/roc-curve-new.png)
 
 # Profit Analysis
 - ## Cost benefit matrix
