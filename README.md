@@ -24,6 +24,7 @@
 - dataset is imbalance. 
   - 89% is no(customer not purchase term deposit)
   - 11% is yes(custoemr purchase term deposit)
+  - our data set is imbalance, accuracy might not be the most score to determine the model
   
   ![imbalance-data](/image/imbalance-data.png)
 
