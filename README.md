@@ -50,7 +50,7 @@
   - XG boosting
     - precision: 61%, recall: 54%
   - nerual network
-    - precision: 32%, recall:0.97%
+    - precision: 32%, recall: 97%
     
 # ROC curve
   - as we can see from this roc curve, the auc for different model is very similiar.
